@@ -1,30 +1,43 @@
-import argparse
+var Board = require("./Board.js");
+var Queen = require("./Queen.js");
 
-from Board import Board
-from Queen import Queen
+function range(stop, start = 0, step) {
+    let a = [start], b = start;
+    while (b < stop) {
+        a.push(b += step || 1);
+    }
+    return a;
+}
 
-# https://en.wikipedia.org/wiki/Eight_queens_puzzle
-def numberOfSolutions(i, board):
-    if (i < board.size()):
-        queen = Queen()
-        count = 0
-
-        for j in range(board.size()):
-            queen.placeOn(board, i, j)
-            if (board.adminissiblePlacementFor(queen)):
-                count = count + numberOfSolutions(i + 1, board)
+function numberOfSolutions(i, board) {
+    if ( i < board.size()) {
+        let queen = new Queen();
+        let count = 0;
+        
+         for (let j of range(board.size())){
+            queen.placeOn(board, i, j);
+            
+            if (board.admissiblePlacementFor(queen)){
+                count = count + numberOfSolutions(i + 1, board);
+            }
             queen.removeFromBoard()
+        }
+        
+        return count;
+            
+    } else {
+        return 1;
+    }
+}
 
-        return count
-    else:
-        return 1
-
-parser = argparse.ArgumentParser(description="Solve the Queen\'s puzzle of the specified size")
-parser.add_argument('size', metavar='N', type=int,
-                    help='an integer for the size of the board and number of queens')
-args = parser.parse_args()
-
-size = args.size
-board = Board(size)
-
-print(numberOfSolutions(0, board))
+const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+  
+readline.question('Size of square board: ', size => {
+    let board = new Board(size);
+    console.log(numberOfSolutions(0, board));
+    console.log(board.allPieces().size);
+    readline.close();
+});
