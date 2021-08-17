@@ -1,6 +1,3 @@
-// Load the full build.
-var _ = require('lodash');
-
 class UniqueSet extends Set {
     constructor(values) {
         super(values);
@@ -41,10 +38,10 @@ class Board {
     //for each item in a set
  
         for (let other of this.pieces) {
-            if (( _.isEqual(other, piece) == false) 
+            if (( other != piece) 
                 && (other.attacks(piece) 
                 || piece.attacks(other))
-                ){
+                ){  
                     return false;  
             }
         return true;

@@ -51,6 +51,16 @@ test_add_ok("Board adding pieces ok?", t => {
 })
 
 //TODO: const test_remove_ok = test;
+const test_remove_ok = test;
+test_remove_ok("Board removing pieces ok?", t => {
+    let board = new Board(3);
+    let piece = new Piece();
+
+    board.add(piece);
+    board.remove(piece);
+
+    t.assert(board.allPieces().size == 0);
+})
 
 const test_admissiblePlacementFor_true = test;
 test_admissiblePlacementFor_true("Board admissiblePlacementFor: attacks false false?", t => {
@@ -116,6 +126,21 @@ test_adminissiblePlacementFor_false3("Board admissiblePlacementFor: attacks true
     actual = board.admissiblePlacementFor(piece2);
 
     expected = false;
+
+    t.assert(actual == expected);
+})
+
+//TODO: test for admissible empty board
+const test_adminissiblePlacementFor_empty = test;
+test_adminissiblePlacementFor_empty("Empty board admissiblePlacementFor ok?", t=> {
+    let board = new Board(3);
+    let piece = new Piece();
+
+    board.add(piece);
+    sinon.mock(piece).expects("attacks").returns(false);
+    actual = board.admissiblePlacementFor(piece);
+
+    expected = true;
 
     t.assert(actual == expected);
 })

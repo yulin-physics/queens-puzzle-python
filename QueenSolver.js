@@ -27,7 +27,6 @@ function numberOfSolutions(i, board) {
             queen.placeOn(board, i, j);
 
             if (board.admissiblePlacementFor(queen)){
-                console.log(count);
                 count = count + numberOfSolutions(i + 1, board);
  
             }
