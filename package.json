@@ -1,0 +1,14 @@
+{
+    "name": "queen-solver",
+    "version": "1.0.0",
+    "dependencies": {
+        "lodash": "^4.17.21",
+        "yargs": "^17.1.0"
+    },
+    "scripts": {
+        "test": "ava"
+    },
+    "devDependencies": {
+        "ava": "^3.15.0"
+    }
+}
