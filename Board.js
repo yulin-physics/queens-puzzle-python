@@ -20,7 +20,7 @@ class Board {
         if( (Math.sign(this.n) != 1) || !isFinite(this.n)) {
             throw new RangeError("The argument size must be a positive integer!")
         }
-        ///constructor requires new? No need for set because JS is not a static language?
+        
         this.pieces = new Set();
     }
     //no need to use function keyword?
